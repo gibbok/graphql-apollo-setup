@@ -1,0 +1,3 @@
+- make schema
+- share schema and types with fe
+- look more into resolvers
