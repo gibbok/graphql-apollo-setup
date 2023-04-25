@@ -1,3 +1,6 @@
-- make schema
-- share schema and types with fe
-- look more into resolvers
+# TODO
+
+Evaluate tooling:
+
+- vscode extensions for lint
+- vscode extensions for graphq

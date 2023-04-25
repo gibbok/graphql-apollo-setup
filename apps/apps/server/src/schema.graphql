@@ -17,3 +17,10 @@ type AddBookMutationResponse {
 type Mutation {
   addBook(title: String, author: String): AddBookMutationResponse
 }
+
+query GetBooks {
+    books {
+        author
+        title
+    }
+}
