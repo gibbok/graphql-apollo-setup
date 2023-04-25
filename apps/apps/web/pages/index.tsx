@@ -1,7 +1,4 @@
-import { Button } from "ui";
-
 import { useQuery, gql } from '@apollo/client';
-
 
 const GET_BOOKS = gql`
   query GetBooks {
@@ -24,7 +21,7 @@ export default function Web() {
 
   return (
     <div>
-      {data.books.map(x => <div key={x.id}>{JSON.stringify(x)}</div>)}
+      {data.books.map(x => <div key={x.author + x.title}>{JSON.stringify(x)}</div>)}
     </div>
   );
 }
