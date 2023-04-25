@@ -9,5 +9,4 @@ generates:
       - "typescript-resolvers"
     config:
       useIndexSignature: true
-      # More on this below!
       contextType: "../index#MyContext"
