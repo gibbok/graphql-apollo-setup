@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { useGetBooksQuery} from '../../server/src/__generated__/types'
 
 const GET_BOOKS = gql`
   query GetBooks {
@@ -11,6 +12,7 @@ const GET_BOOKS = gql`
 
 export default function Web() {
   const { loading, error, data } = useQuery(GET_BOOKS);
+  //  const { loading, error, data } = useGetBooksQuery();
 
   if (loading) {
     return <p>Loading...</p>;
