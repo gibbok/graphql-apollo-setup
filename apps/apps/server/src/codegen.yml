@@ -3,10 +3,15 @@
 schema: "./src/schema.graphql"
 generates:
   # Specify where our generated types should live.
-  ./src/__generated__/resolvers-types.ts:
+  ./src/__generated__/types.tsx:
     plugins:
       - "typescript"
       - "typescript-resolvers"
+      - "typescript-operations"
+      - "typescript-react-apollo"
     config:
       useIndexSignature: true
       contextType: "../index#MyContext"
+      withHooks: true
+      withHOC: true
+      withComponent: true
