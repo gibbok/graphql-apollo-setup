@@ -11,7 +11,7 @@ import { Book, Resolvers } from './__generated__/types';
 // if the server is executed using `npm run`.
 const typeDefs = readFileSync('./src/schema.graphql', { encoding: 'utf-8' });
 
-const books: Array<Book> = [
+const DATA_BOOKS: Array<Book> = [
     {
         title: 'The Awakening',
         author: 'Kate Chopin',
@@ -26,7 +26,7 @@ const books: Array<Book> = [
 // This resolver retrieves books from the "books" array above.
 const resolvers: Resolvers = {
     Query: {
-        books: () => books,
+        books: () => DATA_BOOKS,
     },
 };
 
