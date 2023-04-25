@@ -40,7 +40,7 @@ To develop all apps and packages, run the following command:
 
 ```shell
 cd apps
-pnpm dev
+npm run dev
 ```
 
 ### Remote Caching
