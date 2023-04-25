@@ -28,9 +28,15 @@ const resolvers = {
     },
 };
 
+export interface MyContext {
+    // You can optionally create a TS interface to set up types
+    // for your contextValue
+    authScope?: String;
+  }
+
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
-const server = new ApolloServer({
+const server = new ApolloServer<MyContext>({
     typeDefs,
     resolvers,
 });
