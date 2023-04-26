@@ -9,10 +9,15 @@ generates:
       - "typescript"
       - "typescript-resolvers"
       - "typescript-operations"
-      - "typescript-react-apollo"
     config:
       useIndexSignature: true
       contextType: "../index#MyContext"
+  ./src/__generated__/queries.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
       withHooks: true
       withHOC: true
       withComponent: true
