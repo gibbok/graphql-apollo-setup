@@ -1,14 +1,15 @@
 import type { AppProps } from 'next/app'
 import { ApolloClient, InMemoryCache, HttpLink, ApolloLink, Operation, NextLink, SingleExecutionResult } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client";
-import { Book } from '../../server/src/__generated__/queries';
+import { QueryResolvers } from '../../server/src/__generated__/types';
+import { GetBooksQuery } from '../../server/src/__generated__/queries';
 
 const BASE_URI = "http://localhost:4000/"
 
 const httpLink = new HttpLink({ uri: BASE_URI });
 
 const transformResponse = (operation: Operation, forward: NextLink) => {
-    const r = forward(operation).map((response: SingleExecutionResult<{ books: ReadonlyArray<Book> }>) => {
+    const observable = forward(operation).map((response: SingleExecutionResult<GetBooksQuery>) => {
         if (response.data) {
             return {
                 ...response,
@@ -23,8 +24,7 @@ const transformResponse = (operation: Operation, forward: NextLink) => {
             return response;
         }
     });
-    debugger
-    return r
+    return observable
 };
 
 const link = ApolloLink.from([transformResponse, httpLink]);
