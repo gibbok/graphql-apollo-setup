@@ -25,7 +25,14 @@ export type AddBookMutationResponse = {
 export type Book = {
   __typename?: 'Book';
   author?: Maybe<Scalars['String']>;
+  info?: Maybe<Info>;
   title?: Maybe<Scalars['String']>;
+};
+
+export type Info = {
+  __typename?: 'Info';
+  reviewsCount?: Maybe<Scalars['Int']>;
+  score?: Maybe<Scalars['Int']>;
 };
 
 export type Mutation = {
@@ -119,6 +126,8 @@ export type ResolversTypes = ResolversObject<{
   AddBookMutationResponse: ResolverTypeWrapper<AddBookMutationResponse>;
   Book: ResolverTypeWrapper<Book>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Info: ResolverTypeWrapper<Info>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
@@ -129,6 +138,8 @@ export type ResolversParentTypes = ResolversObject<{
   AddBookMutationResponse: AddBookMutationResponse;
   Book: Book;
   Boolean: Scalars['Boolean'];
+  Info: Info;
+  Int: Scalars['Int'];
   Mutation: {};
   Query: {};
   String: Scalars['String'];
@@ -144,7 +155,14 @@ export type AddBookMutationResponseResolvers<ContextType = MyContext, ParentType
 
 export type BookResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = ResolversObject<{
   author?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  info?: Resolver<Maybe<ResolversTypes['Info']>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type InfoResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Info'] = ResolversParentTypes['Info']> = ResolversObject<{
+  reviewsCount?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  score?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -159,6 +177,7 @@ export type QueryResolvers<ContextType = MyContext, ParentType extends Resolvers
 export type Resolvers<ContextType = MyContext> = ResolversObject<{
   AddBookMutationResponse?: AddBookMutationResponseResolvers<ContextType>;
   Book?: BookResolvers<ContextType>;
+  Info?: InfoResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 }>;

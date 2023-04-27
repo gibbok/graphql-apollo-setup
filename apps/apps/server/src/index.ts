@@ -15,10 +15,18 @@ const DATA_BOOKS: Array<Book> = [
     {
         title: 'The Awakening',
         author: 'Kate Chopin',
+        info: {
+            reviewsCount: 2,
+            score: 8
+        }
     },
     {
         title: 'City of Glass',
         author: 'Paul Auster',
+        info: {
+            reviewsCount: 2,
+            score: 8
+        }
     },
 ];
 
@@ -34,7 +42,7 @@ export interface MyContext {
     // You can optionally create a TS interface to set up types
     // for your contextValue
     authScope?: String;
-  }
+}
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.

@@ -30,7 +30,14 @@ export type AddBookMutationResponse = {
 export type Book = {
   __typename?: 'Book';
   author?: Maybe<Scalars['String']>;
+  info?: Maybe<Info>;
   title?: Maybe<Scalars['String']>;
+};
+
+export type Info = {
+  __typename?: 'Info';
+  reviewsCount?: Maybe<Scalars['Int']>;
+  score?: Maybe<Scalars['Int']>;
 };
 
 export type Mutation = {
