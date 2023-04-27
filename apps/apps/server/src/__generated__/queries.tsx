@@ -69,6 +69,11 @@ export type GetBooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', id: string, author: string, title: string, info: { __typename?: 'Info', score: number } } | null> | null };
 
+export type GetReadersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetReadersQuery = { __typename?: 'Query', readers?: Array<{ __typename?: 'Reader', id: string, name?: string | null } | null> | null };
+
 
 export const GetBooksDocument = gql`
     query GetBooks {
@@ -128,3 +133,57 @@ export function useGetBooksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<G
 export type GetBooksQueryHookResult = ReturnType<typeof useGetBooksQuery>;
 export type GetBooksLazyQueryHookResult = ReturnType<typeof useGetBooksLazyQuery>;
 export type GetBooksQueryResult = Apollo.QueryResult<GetBooksQuery, GetBooksQueryVariables>;
+export const GetReadersDocument = gql`
+    query GetReaders {
+  readers {
+    id
+    name
+  }
+}
+    `;
+export type GetReadersComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetReadersQuery, GetReadersQueryVariables>, 'query'>;
+
+    export const GetReadersComponent = (props: GetReadersComponentProps) => (
+      <ApolloReactComponents.Query<GetReadersQuery, GetReadersQueryVariables> query={GetReadersDocument} {...props} />
+    );
+    
+export type GetReadersProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<GetReadersQuery, GetReadersQueryVariables>
+    } & TChildProps;
+export function withGetReaders<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetReadersQuery,
+  GetReadersQueryVariables,
+  GetReadersProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, GetReadersQuery, GetReadersQueryVariables, GetReadersProps<TChildProps, TDataName>>(GetReadersDocument, {
+      alias: 'getReaders',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useGetReadersQuery__
+ *
+ * To run a query within a React component, call `useGetReadersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetReadersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetReadersQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetReadersQuery(baseOptions?: Apollo.QueryHookOptions<GetReadersQuery, GetReadersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetReadersQuery, GetReadersQueryVariables>(GetReadersDocument, options);
+      }
+export function useGetReadersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetReadersQuery, GetReadersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetReadersQuery, GetReadersQueryVariables>(GetReadersDocument, options);
+        }
+export type GetReadersQueryHookResult = ReturnType<typeof useGetReadersQuery>;
+export type GetReadersLazyQueryHookResult = ReturnType<typeof useGetReadersLazyQuery>;
+export type GetReadersQueryResult = Apollo.QueryResult<GetReadersQuery, GetReadersQueryVariables>;

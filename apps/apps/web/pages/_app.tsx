@@ -25,6 +25,8 @@ const transformResponse = (operation: Operation, forward: NextLink) => {
                         }
                     };
                     return responseUI
+                case 'GetReaders':
+                    return response
             }
         } else {
             return response;

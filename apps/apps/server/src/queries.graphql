@@ -8,3 +8,10 @@ query GetBooks {
         }
     }
 }
+
+query GetReaders {
+    readers {
+        id
+        name
+    }
+}

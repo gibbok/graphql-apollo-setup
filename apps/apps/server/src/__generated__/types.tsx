@@ -208,3 +208,8 @@ export type GetBooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', id: string, author: string, title: string, info: { __typename?: 'Info', score: number } } | null> | null };
+
+export type GetReadersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetReadersQuery = { __typename?: 'Query', readers?: Array<{ __typename?: 'Reader', id: string, name?: string | null } | null> | null };
