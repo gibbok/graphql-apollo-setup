@@ -3,14 +3,15 @@ type Query {
 }
 
 type Info {
-  reviewsCount: Int 
-  score: Int 
+  reviewsCount: Int!
+  score: Int!
 }
 
 type Book {
-  title: String
-  author: String
-  info: Info
+  id: ID!
+  title: String!
+  author: String!
+  info: Info!
 }
 
 type AddBookMutationResponse {

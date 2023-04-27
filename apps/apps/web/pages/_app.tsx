@@ -14,8 +14,10 @@ const transformResponse = (operation: Operation, forward: NextLink) => {
                 ...response,
                 data: {
                     books: response.data.books.map(x => ({
-                        ...x,
-                        title: x.title.toUpperCase() + ' XXX'
+                        id: x.id,
+                        title: x.title.toUpperCase(),
+                        author: x.author,
+                        score: x.info.score
                     }))
                 }
             };

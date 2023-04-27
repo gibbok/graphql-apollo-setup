@@ -24,15 +24,16 @@ export type AddBookMutationResponse = {
 
 export type Book = {
   __typename?: 'Book';
-  author?: Maybe<Scalars['String']>;
-  info?: Maybe<Info>;
-  title?: Maybe<Scalars['String']>;
+  author: Scalars['String'];
+  id: Scalars['ID'];
+  info: Info;
+  title: Scalars['String'];
 };
 
 export type Info = {
   __typename?: 'Info';
-  reviewsCount?: Maybe<Scalars['Int']>;
-  score?: Maybe<Scalars['Int']>;
+  reviewsCount: Scalars['Int'];
+  score: Scalars['Int'];
 };
 
 export type Mutation = {
@@ -126,6 +127,7 @@ export type ResolversTypes = ResolversObject<{
   AddBookMutationResponse: ResolverTypeWrapper<AddBookMutationResponse>;
   Book: ResolverTypeWrapper<Book>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  ID: ResolverTypeWrapper<Scalars['ID']>;
   Info: ResolverTypeWrapper<Info>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Mutation: ResolverTypeWrapper<{}>;
@@ -138,6 +140,7 @@ export type ResolversParentTypes = ResolversObject<{
   AddBookMutationResponse: AddBookMutationResponse;
   Book: Book;
   Boolean: Scalars['Boolean'];
+  ID: Scalars['ID'];
   Info: Info;
   Int: Scalars['Int'];
   Mutation: {};
@@ -154,15 +157,16 @@ export type AddBookMutationResponseResolvers<ContextType = MyContext, ParentType
 }>;
 
 export type BookResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = ResolversObject<{
-  author?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  info?: Resolver<Maybe<ResolversTypes['Info']>, ParentType, ContextType>;
-  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  author?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  info?: Resolver<ResolversTypes['Info'], ParentType, ContextType>;
+  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type InfoResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Info'] = ResolversParentTypes['Info']> = ResolversObject<{
-  reviewsCount?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  score?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  reviewsCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  score?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -186,4 +190,4 @@ export type Resolvers<ContextType = MyContext> = ResolversObject<{
 export type GetBooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', author?: string | null, title?: string | null, info?: { __typename?: 'Info', score?: number | null } | null } | null> | null };
+export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', id: string, author: string, title: string, info: { __typename?: 'Info', score: number } } | null> | null };

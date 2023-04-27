@@ -13,6 +13,7 @@ const typeDefs = readFileSync('./src/schema.graphql', { encoding: 'utf-8' });
 
 const DATA_BOOKS: Array<Book> = [
     {
+        id: 'b1',
         title: 'The Awakening',
         author: 'Kate Chopin',
         info: {
@@ -21,6 +22,7 @@ const DATA_BOOKS: Array<Book> = [
         }
     },
     {
+        id: 'b2',
         title: 'City of Glass',
         author: 'Paul Auster',
         info: {

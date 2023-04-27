@@ -29,15 +29,16 @@ export type AddBookMutationResponse = {
 
 export type Book = {
   __typename?: 'Book';
-  author?: Maybe<Scalars['String']>;
-  info?: Maybe<Info>;
-  title?: Maybe<Scalars['String']>;
+  author: Scalars['String'];
+  id: Scalars['ID'];
+  info: Info;
+  title: Scalars['String'];
 };
 
 export type Info = {
   __typename?: 'Info';
-  reviewsCount?: Maybe<Scalars['Int']>;
-  score?: Maybe<Scalars['Int']>;
+  reviewsCount: Scalars['Int'];
+  score: Scalars['Int'];
 };
 
 export type Mutation = {
@@ -59,12 +60,13 @@ export type Query = {
 export type GetBooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', author?: string | null, title?: string | null, info?: { __typename?: 'Info', score?: number | null } | null } | null> | null };
+export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', id: string, author: string, title: string, info: { __typename?: 'Info', score: number } } | null> | null };
 
 
 export const GetBooksDocument = gql`
     query GetBooks {
   books {
+    id
     author
     title
     info {
