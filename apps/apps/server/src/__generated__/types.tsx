@@ -50,6 +50,13 @@ export type MutationAddBookArgs = {
 export type Query = {
   __typename?: 'Query';
   books?: Maybe<Array<Maybe<Book>>>;
+  readers?: Maybe<Array<Maybe<Reader>>>;
+};
+
+export type Reader = {
+  __typename?: 'Reader';
+  id: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -132,6 +139,7 @@ export type ResolversTypes = ResolversObject<{
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
+  Reader: ResolverTypeWrapper<Reader>;
   String: ResolverTypeWrapper<Scalars['String']>;
 }>;
 
@@ -145,6 +153,7 @@ export type ResolversParentTypes = ResolversObject<{
   Int: Scalars['Int'];
   Mutation: {};
   Query: {};
+  Reader: Reader;
   String: Scalars['String'];
 }>;
 
@@ -176,6 +185,13 @@ export type MutationResolvers<ContextType = MyContext, ParentType extends Resolv
 
 export type QueryResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   books?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType>;
+  readers?: Resolver<Maybe<Array<Maybe<ResolversTypes['Reader']>>>, ParentType, ContextType>;
+}>;
+
+export type ReaderResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Reader'] = ResolversParentTypes['Reader']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type Resolvers<ContextType = MyContext> = ResolversObject<{
@@ -184,6 +200,7 @@ export type Resolvers<ContextType = MyContext> = ResolversObject<{
   Info?: InfoResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Reader?: ReaderResolvers<ContextType>;
 }>;
 
 

@@ -55,6 +55,13 @@ export type MutationAddBookArgs = {
 export type Query = {
   __typename?: 'Query';
   books?: Maybe<Array<Maybe<Book>>>;
+  readers?: Maybe<Array<Maybe<Reader>>>;
+};
+
+export type Reader = {
+  __typename?: 'Reader';
+  id: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
 };
 
 export type GetBooksQueryVariables = Exact<{ [key: string]: never; }>;

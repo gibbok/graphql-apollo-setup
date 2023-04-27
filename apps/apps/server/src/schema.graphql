@@ -1,6 +1,13 @@
 type Query {
   books: [Book]
+  readers: [Reader]
 }
+
+type Reader {
+  id: String!
+  name: String 
+}
+
 
 type Info {
   reviewsCount: Int!

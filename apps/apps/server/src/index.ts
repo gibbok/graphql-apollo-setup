@@ -1,7 +1,7 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { readFileSync } from 'fs';
-import { Book, Resolvers } from './__generated__/types';
+import { Book, Reader, Resolvers } from './__generated__/types';
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
 // your data.
@@ -32,11 +32,23 @@ const DATA_BOOKS: Array<Book> = [
     },
 ];
 
+const DATA_READERS: Array<Reader> = [
+    {
+        id: 'r1',
+        name: 'John'
+    },
+    {
+        id: 'r2',
+        name: 'Simon'
+    }
+]
+
 // Resolvers define how to fetch the types defined in your schema.
 // This resolver retrieves books from the "books" array above.
 const resolvers: Resolvers = {
     Query: {
         books: () => DATA_BOOKS,
+        readers: () => DATA_READERS
     },
 };
 
