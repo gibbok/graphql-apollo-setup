@@ -3,6 +3,7 @@ import { ResultBooksUI } from '../ui-types';
 import { GetBooksDocument } from '../../server/src/__generated__/queries';
 
 export default function Web() {
+  // using Apollo Link for transformation
   const { loading, error, data } = useQuery<ResultBooksUI>(GetBooksDocument); // with customer type because of the transform
 
   if (loading) {

@@ -1,6 +1,7 @@
 import { useGetReadersQuery } from '../../server/src/__generated__/queries';
 
 export default function Web() {
+  // using hook automatically generated
   const { loading, error, data } = useGetReadersQuery(); 
 
   if (loading) {
