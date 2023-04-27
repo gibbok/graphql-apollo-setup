@@ -6,3 +6,7 @@ export type BookUI = {
 }
 
 export type BooksUI = ReadonlyArray<BookUI>
+
+export type ResultBooksUI = Readonly<{
+    books: BooksUI
+}>
