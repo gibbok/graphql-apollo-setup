@@ -4,9 +4,9 @@ import { GetBooksDocument, useGetCustomBooksQuery } from '../../server/src/__gen
 
 export default function Web() {
   // using Apollo Link for transformation
-  const { loading, error, data } = useQuery<ResultBooksUI>(GetBooksDocument); // with customer type because of the transform
-  const { data: x } = useGetCustomBooksQuery()
-  console.log("xxxxxxxxxx", x)
+  const { loading, error, data } = useGetCustomBooksQuery()
+  console.log('data', data)
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -16,10 +16,10 @@ export default function Web() {
 
   return (
     <div>
-      <h1>Books</h1>
-      {data.books.map(x => (
+      <h1>Custom Books</h1>
+      {data.customBooks.map(x => (
         <div key={x.id}>
-          Title: {x.title} - Author: {x.author} - Score: {x.score}
+          Title: {x.title}
         </div>
       ))}
     </div>

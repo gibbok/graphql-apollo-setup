@@ -55,6 +55,7 @@ export type MutationAddBookArgs = {
 export type Query = {
   __typename?: 'Query';
   books?: Maybe<Array<Maybe<Book>>>;
+  customBooks?: Maybe<Array<Maybe<Book>>>;
   readers?: Maybe<Array<Maybe<Reader>>>;
 };
 
@@ -73,6 +74,11 @@ export type GetReadersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetReadersQuery = { __typename?: 'Query', readers?: Array<{ __typename?: 'Reader', id: string, name?: string | null } | null> | null };
+
+export type GetCustomBooksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCustomBooksQuery = { __typename?: 'Query', customBooks?: Array<{ __typename?: 'Book', id: string, title: string } | null> | null };
 
 
 export const GetBooksDocument = gql`
@@ -187,3 +193,57 @@ export function useGetReadersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type GetReadersQueryHookResult = ReturnType<typeof useGetReadersQuery>;
 export type GetReadersLazyQueryHookResult = ReturnType<typeof useGetReadersLazyQuery>;
 export type GetReadersQueryResult = Apollo.QueryResult<GetReadersQuery, GetReadersQueryVariables>;
+export const GetCustomBooksDocument = gql`
+    query GetCustomBooks {
+  customBooks @client {
+    id
+    title
+  }
+}
+    `;
+export type GetCustomBooksComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetCustomBooksQuery, GetCustomBooksQueryVariables>, 'query'>;
+
+    export const GetCustomBooksComponent = (props: GetCustomBooksComponentProps) => (
+      <ApolloReactComponents.Query<GetCustomBooksQuery, GetCustomBooksQueryVariables> query={GetCustomBooksDocument} {...props} />
+    );
+    
+export type GetCustomBooksProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<GetCustomBooksQuery, GetCustomBooksQueryVariables>
+    } & TChildProps;
+export function withGetCustomBooks<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GetCustomBooksQuery,
+  GetCustomBooksQueryVariables,
+  GetCustomBooksProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, GetCustomBooksQuery, GetCustomBooksQueryVariables, GetCustomBooksProps<TChildProps, TDataName>>(GetCustomBooksDocument, {
+      alias: 'getCustomBooks',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useGetCustomBooksQuery__
+ *
+ * To run a query within a React component, call `useGetCustomBooksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCustomBooksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCustomBooksQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetCustomBooksQuery(baseOptions?: Apollo.QueryHookOptions<GetCustomBooksQuery, GetCustomBooksQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCustomBooksQuery, GetCustomBooksQueryVariables>(GetCustomBooksDocument, options);
+      }
+export function useGetCustomBooksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCustomBooksQuery, GetCustomBooksQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCustomBooksQuery, GetCustomBooksQueryVariables>(GetCustomBooksDocument, options);
+        }
+export type GetCustomBooksQueryHookResult = ReturnType<typeof useGetCustomBooksQuery>;
+export type GetCustomBooksLazyQueryHookResult = ReturnType<typeof useGetCustomBooksLazyQuery>;
+export type GetCustomBooksQueryResult = Apollo.QueryResult<GetCustomBooksQuery, GetCustomBooksQueryVariables>;

@@ -1,6 +1,7 @@
 type Query {
   books: [Book]
   readers: [Reader]
+  customBooks: [Book]
 }
 
 type Reader {

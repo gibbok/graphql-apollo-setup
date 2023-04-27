@@ -50,6 +50,7 @@ export type MutationAddBookArgs = {
 export type Query = {
   __typename?: 'Query';
   books?: Maybe<Array<Maybe<Book>>>;
+  customBooks?: Maybe<Array<Maybe<Book>>>;
   readers?: Maybe<Array<Maybe<Reader>>>;
 };
 
@@ -185,6 +186,7 @@ export type MutationResolvers<ContextType = MyContext, ParentType extends Resolv
 
 export type QueryResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   books?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType>;
+  customBooks?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType>;
   readers?: Resolver<Maybe<Array<Maybe<ResolversTypes['Reader']>>>, ParentType, ContextType>;
 }>;
 
@@ -213,3 +215,8 @@ export type GetReadersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetReadersQuery = { __typename?: 'Query', readers?: Array<{ __typename?: 'Reader', id: string, name?: string | null } | null> | null };
+
+export type GetCustomBooksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCustomBooksQuery = { __typename?: 'Query', customBooks?: Array<{ __typename?: 'Book', id: string, title: string } | null> | null };

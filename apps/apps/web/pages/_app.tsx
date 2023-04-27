@@ -38,7 +38,21 @@ const link = ApolloLink.from([transformResponse, httpLink]);
 
 const client = new ApolloClient({
     link,
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+        typePolicies: {
+            Query: {
+                fields: {
+                    customBooks: {
+                        read(books, options) {
+                            const booksFromCache = options.readField('books')
+                            // TODO
+                            return booksFromCache
+                        }
+                    }
+                },
+            },
+        },
+    }),
 });
 
 export default function MyApp({ Component, pageProps }: AppProps) {

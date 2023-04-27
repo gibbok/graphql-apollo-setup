@@ -15,3 +15,10 @@ query GetReaders {
         name
     }
 }
+
+query GetCustomBooks {
+  customBooks @client {
+    id
+    title
+  }
+}
