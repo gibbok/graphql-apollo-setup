@@ -9,26 +9,30 @@ const BASE_URI = "http://localhost:4000/"
 const httpLink = new HttpLink({ uri: BASE_URI });
 
 const transformResponse = (operation: Operation, forward: NextLink) => {
-    const observable = forward(operation).map((response: SingleExecutionResult<GetBooksQuery>) => {
+    const observable = forward(operation).map((response) => {
         if (response.data) {
-            const responseUI = {
-                ...response,
-                data: {
-                    books: response.data.books.map(x => ({
-                        id: x.id,
-                        title: x.title.toUpperCase(),
-                        author: x.author,
-                        score: x.info.score
-                    }))
-                }
-            };
-            return responseUI
+            switch (operation.operationName) {
+                case 'GetBooks':
+                    const responseUI = {
+                        ...response,
+                        data: {
+                            books: response.data.books.map(x => ({
+                                id: x.id,
+                                title: x.title.toUpperCase(),
+                                author: x.author,
+                                score: x.info.score
+                            }))
+                        }
+                    };
+                    return responseUI
+            }
         } else {
             return response;
         }
     });
     return observable
-};
+
+}
 
 const link = ApolloLink.from([transformResponse, httpLink]);
 
