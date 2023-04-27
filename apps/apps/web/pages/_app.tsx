@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app'
 import { ApolloClient, InMemoryCache, HttpLink, ApolloLink, Operation, NextLink, SingleExecutionResult } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client";
 import { GetBooksQuery } from '../../server/src/__generated__/queries';
+import { ResultBooksUI } from '../ui-types';
 
 const BASE_URI = "http://localhost:4000/"
 
@@ -10,7 +11,7 @@ const httpLink = new HttpLink({ uri: BASE_URI });
 const transformResponse = (operation: Operation, forward: NextLink) => {
     const observable = forward(operation).map((response: SingleExecutionResult<GetBooksQuery>) => {
         if (response.data) {
-            return {
+            const responseUI = {
                 ...response,
                 data: {
                     books: response.data.books.map(x => ({
@@ -21,6 +22,7 @@ const transformResponse = (operation: Operation, forward: NextLink) => {
                     }))
                 }
             };
+            return responseUI
         } else {
             return response;
         }
