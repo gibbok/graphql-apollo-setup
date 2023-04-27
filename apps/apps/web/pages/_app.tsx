@@ -1,7 +1,6 @@
 import type { AppProps } from 'next/app'
 import { ApolloClient, InMemoryCache, HttpLink, ApolloLink, Operation, NextLink, SingleExecutionResult } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client";
-import { QueryResolvers } from '../../server/src/__generated__/types';
 import { GetBooksQuery } from '../../server/src/__generated__/queries';
 
 const BASE_URI = "http://localhost:4000/"
