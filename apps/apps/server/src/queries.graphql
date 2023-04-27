@@ -2,5 +2,8 @@ query GetBooks {
     books {
         author
         title
+        info {
+            score
+        }
     }
 }

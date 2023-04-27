@@ -59,7 +59,7 @@ export type Query = {
 export type GetBooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', author?: string | null, title?: string | null } | null> | null };
+export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', author?: string | null, title?: string | null, info?: { __typename?: 'Info', score?: number | null } | null } | null> | null };
 
 
 export const GetBooksDocument = gql`
@@ -67,6 +67,9 @@ export const GetBooksDocument = gql`
   books {
     author
     title
+    info {
+      score
+    }
   }
 }
     `;
