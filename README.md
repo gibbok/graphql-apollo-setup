@@ -1,1 +1,1 @@
-# project-graphql-apollo
+# GraphQL Apollo Setup
