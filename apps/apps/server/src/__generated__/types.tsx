@@ -26,7 +26,7 @@ export type Book = {
   __typename?: 'Book';
   author: Scalars['String'];
   id: Scalars['ID'];
-  rating?: Maybe<Rating>;
+  rating: Rating;
   title: Scalars['String'];
 };
 
@@ -160,7 +160,7 @@ export type AddBookMutationResponseResolvers<ContextType = MyContext, ParentType
 export type BookResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = ResolversObject<{
   author?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  rating?: Resolver<Maybe<ResolversTypes['Rating']>, ParentType, ContextType>;
+  rating?: Resolver<ResolversTypes['Rating'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
@@ -192,4 +192,4 @@ export type Resolvers<ContextType = MyContext> = ResolversObject<{
 export type GetBooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetBooksQuery = { __typename?: 'Query', books: Array<{ __typename?: 'Book', id: string, author: string, title: string, rating?: { __typename?: 'Rating', score: number } | null } | null> };
+export type GetBooksQuery = { __typename?: 'Query', books: Array<{ __typename?: 'Book', id: string, author: string, title: string, rating: { __typename?: 'Rating', score: number } } | null> };

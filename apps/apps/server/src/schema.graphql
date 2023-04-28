@@ -12,7 +12,7 @@ type Book {
   id: ID!
   title: String!
   author: String!
-  rating: Rating
+  rating: Rating!
 }
 
 type AddBookMutationResponse {

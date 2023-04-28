@@ -31,7 +31,7 @@ export type Book = {
   __typename?: 'Book';
   author: Scalars['String'];
   id: Scalars['ID'];
-  rating?: Maybe<Rating>;
+  rating: Rating;
   title: Scalars['String'];
 };
 
@@ -61,7 +61,7 @@ export type Rating = {
 export type GetBooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetBooksQuery = { __typename?: 'Query', books: Array<{ __typename?: 'Book', id: string, author: string, title: string, rating?: { __typename?: 'Rating', score: number } | null } | null> };
+export type GetBooksQuery = { __typename?: 'Query', books: Array<{ __typename?: 'Book', id: string, author: string, title: string, rating: { __typename?: 'Rating', score: number } } | null> };
 
 
 export const GetBooksDocument = gql`
