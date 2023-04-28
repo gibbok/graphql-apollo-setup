@@ -36,8 +36,6 @@ export default function Web() {
   }
 
   const dataUI = transformDataForUI(data)
-  console.log(data)
-  console.log(dataUI)
 
   return (
     <div>
