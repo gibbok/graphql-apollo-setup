@@ -8,11 +8,15 @@ The setup includes:
 - Generating TypeScript type from GraphQL definitions.
 - Generating hook for data fetching.
 
-This project demostrates how to transform data provided to server to data suitable for the View.
+This project demonstrates how to transform data provided from the server into data suitable for the View.
 
-The branch called `transform`
+The branch called `transform` contains experimentation with Apollo Link and Root query field policies.
 
 ```shall
 code --install-extension GraphQL.vscode-graphql
 code --install-extension GraphQL.vscode-graphql-syntax
 ```
+
+Notes and useful resources:
+
+<https://github.com/gibbok/notes-graphql>
