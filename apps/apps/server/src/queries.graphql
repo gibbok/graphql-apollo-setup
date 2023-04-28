@@ -1,6 +1,10 @@
 query GetBooks {
     books {
+        id
         author
         title
+        rating {
+            score
+        }
     }
 }
