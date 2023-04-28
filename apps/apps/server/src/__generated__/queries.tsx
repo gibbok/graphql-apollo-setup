@@ -29,8 +29,10 @@ export type AddBookMutationResponse = {
 
 export type Book = {
   __typename?: 'Book';
-  author?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
+  author: Scalars['String'];
+  id: Scalars['ID'];
+  rating: Rating;
+  title: Scalars['String'];
 };
 
 export type Mutation = {
@@ -46,20 +48,31 @@ export type MutationAddBookArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  books?: Maybe<Array<Maybe<Book>>>;
+  books: Array<Maybe<Book>>;
+};
+
+export type Rating = {
+  __typename?: 'Rating';
+  id: Scalars['ID'];
+  reviewers: Scalars['Int'];
+  score: Scalars['Int'];
 };
 
 export type GetBooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', author?: string | null, title?: string | null } | null> | null };
+export type GetBooksQuery = { __typename?: 'Query', books: Array<{ __typename?: 'Book', id: string, author: string, title: string, rating: { __typename?: 'Rating', score: number } } | null> };
 
 
 export const GetBooksDocument = gql`
     query GetBooks {
   books {
+    id
     author
     title
+    rating {
+      score
+    }
   }
 }
     `;
