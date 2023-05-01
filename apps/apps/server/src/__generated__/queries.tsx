@@ -48,7 +48,7 @@ export type MutationAddBookArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  books?: Maybe<Array<Book>>;
+  books?: Maybe<Array<Maybe<Book>>>;
 };
 
 export type Rating = {
@@ -61,7 +61,7 @@ export type Rating = {
 export type GetBooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', id: string, author?: string | null, title?: string | null, rating?: { __typename?: 'Rating', id: string, score?: number | null } | null }> | null };
+export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', id: string, author?: string | null, title?: string | null, rating?: { __typename?: 'Rating', id: string, score?: number | null } | null } | null> | null };
 
 
 export const GetBooksDocument = gql`
