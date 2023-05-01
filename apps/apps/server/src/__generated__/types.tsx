@@ -43,7 +43,7 @@ export type MutationAddBookArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  books?: Maybe<Array<Maybe<Book>>>;
+  books?: Maybe<Array<Book>>;
 };
 
 export type Rating = {
@@ -170,7 +170,7 @@ export type MutationResolvers<ContextType = MyContext, ParentType extends Resolv
 }>;
 
 export type QueryResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
-  books?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType>;
+  books?: Resolver<Maybe<Array<ResolversTypes['Book']>>, ParentType, ContextType>;
 }>;
 
 export type RatingResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Rating'] = ResolversParentTypes['Rating']> = ResolversObject<{
@@ -192,4 +192,4 @@ export type Resolvers<ContextType = MyContext> = ResolversObject<{
 export type GetBooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', id: string, author?: string | null, title?: string | null, rating?: { __typename?: 'Rating', id: string, score?: number | null } | null } | null> | null };
+export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', id: string, author?: string | null, title?: string | null, rating?: { __typename?: 'Rating', id: string, score?: number | null } | null }> | null };
