@@ -4,6 +4,7 @@ query GetBooks {
         author
         title
         rating {
+            id
             score
         }
     }

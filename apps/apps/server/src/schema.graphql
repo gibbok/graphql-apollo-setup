@@ -1,24 +1,24 @@
 type Query {
-  books: [Book]!
+  books: [Book!]
 }
 
 type Rating {
   id: ID!
-  reviewers: Int!
-  score: Int!
+  reviewers: Int
+  score: Int
 }
 
 type Book {
   id: ID!
-  title: String!
-  author: String!
-  rating: Rating!
+  title: String
+  author: String
+  rating: Rating
 }
 
 type AddBookMutationResponse {
-  code: String!
-  success: Boolean!
-  message: String!
+  code: String
+  success: Boolean
+  message: String
   book: Book
 }
 

@@ -22,17 +22,17 @@ export type Scalars = {
 export type AddBookMutationResponse = {
   __typename?: 'AddBookMutationResponse';
   book?: Maybe<Book>;
-  code: Scalars['String'];
-  message: Scalars['String'];
-  success: Scalars['Boolean'];
+  code?: Maybe<Scalars['String']>;
+  message?: Maybe<Scalars['String']>;
+  success?: Maybe<Scalars['Boolean']>;
 };
 
 export type Book = {
   __typename?: 'Book';
-  author: Scalars['String'];
+  author?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
-  rating: Rating;
-  title: Scalars['String'];
+  rating?: Maybe<Rating>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type Mutation = {
@@ -48,20 +48,20 @@ export type MutationAddBookArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  books: Array<Maybe<Book>>;
+  books?: Maybe<Array<Book>>;
 };
 
 export type Rating = {
   __typename?: 'Rating';
   id: Scalars['ID'];
-  reviewers: Scalars['Int'];
-  score: Scalars['Int'];
+  reviewers?: Maybe<Scalars['Int']>;
+  score?: Maybe<Scalars['Int']>;
 };
 
 export type GetBooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetBooksQuery = { __typename?: 'Query', books: Array<{ __typename?: 'Book', id: string, author: string, title: string, rating: { __typename?: 'Rating', score: number } } | null> };
+export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', id: string, author?: string | null, title?: string | null, rating?: { __typename?: 'Rating', id: string, score?: number | null } | null }> | null };
 
 
 export const GetBooksDocument = gql`
@@ -71,6 +71,7 @@ export const GetBooksDocument = gql`
     author
     title
     rating {
+      id
       score
     }
   }

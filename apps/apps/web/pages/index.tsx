@@ -1,8 +1,9 @@
-import { GetBooksQuery, useGetBooksQuery } from '../../server/src/__generated__/queries'
+import { Book, GetBooksQuery, Maybe, Rating, useGetBooksQuery } from '../../server/src/__generated__/queries'
 
 const enum Sentiment {
   Positive = 'positive',
-  Negative = 'negative'
+  Negative = 'negative',
+  Neutral = 'neutral'
 }
 
 type BookUI = Readonly<{
@@ -14,16 +15,24 @@ type BookUI = Readonly<{
 
 type BooksUI = ReadonlyArray<BookUI>
 
+const NOT_FOUND = 'Not found'
+
+const getSentiment = (x?: Maybe<Rating>): Sentiment =>
+  x?.score ? x.score === 5 ? Sentiment.Neutral : x.score > 5 ? Sentiment.Positive : Sentiment.Negative : Sentiment.Neutral
+
+const isBook = (x: Maybe<Book>): x is Book => x !== null
+
 // transform data from the server to data suitable for the UI
-const transformDataForUI = (data: GetBooksQuery): BooksUI =>
-  data.books.map(x => ({
-    id: x.id,
-    title: x.title,
-    author: x.author,
-    sentiment: x.rating.score < 6 ? Sentiment.Negative : Sentiment.Positive
-  }))
-
-
+const transformDataForUI = (data: GetBooksQuery | undefined): BooksUI =>
+  data?.books ?
+    data.books.filter(isBook).map(x =>
+    ({
+      id: x.id,
+      title: x.title ?? NOT_FOUND,
+      author: x.author ?? NOT_FOUND,
+      sentiment: getSentiment(x.rating)
+    })
+    ) : []
 
 export default function Web() {
   const { loading, error, data } = useGetBooksQuery();
