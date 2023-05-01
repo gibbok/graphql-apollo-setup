@@ -17,17 +17,17 @@ export type Scalars = {
 export type AddBookMutationResponse = {
   __typename?: 'AddBookMutationResponse';
   book?: Maybe<Book>;
-  code: Scalars['String'];
-  message: Scalars['String'];
-  success: Scalars['Boolean'];
+  code?: Maybe<Scalars['String']>;
+  message?: Maybe<Scalars['String']>;
+  success?: Maybe<Scalars['Boolean']>;
 };
 
 export type Book = {
   __typename?: 'Book';
-  author: Scalars['String'];
+  author?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
-  rating: Rating;
-  title: Scalars['String'];
+  rating?: Maybe<Rating>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type Mutation = {
@@ -43,14 +43,14 @@ export type MutationAddBookArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  books: Array<Maybe<Book>>;
+  books?: Maybe<Array<Book>>;
 };
 
 export type Rating = {
   __typename?: 'Rating';
   id: Scalars['ID'];
-  reviewers: Scalars['Int'];
-  score: Scalars['Int'];
+  reviewers?: Maybe<Scalars['Int']>;
+  score?: Maybe<Scalars['Int']>;
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -151,17 +151,17 @@ export type ResolversParentTypes = ResolversObject<{
 
 export type AddBookMutationResponseResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['AddBookMutationResponse'] = ResolversParentTypes['AddBookMutationResponse']> = ResolversObject<{
   book?: Resolver<Maybe<ResolversTypes['Book']>, ParentType, ContextType>;
-  code?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  message?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  success?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  code?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  success?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type BookResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = ResolversObject<{
-  author?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  author?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  rating?: Resolver<ResolversTypes['Rating'], ParentType, ContextType>;
-  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  rating?: Resolver<Maybe<ResolversTypes['Rating']>, ParentType, ContextType>;
+  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -170,13 +170,13 @@ export type MutationResolvers<ContextType = MyContext, ParentType extends Resolv
 }>;
 
 export type QueryResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
-  books?: Resolver<Array<Maybe<ResolversTypes['Book']>>, ParentType, ContextType>;
+  books?: Resolver<Maybe<Array<ResolversTypes['Book']>>, ParentType, ContextType>;
 }>;
 
 export type RatingResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Rating'] = ResolversParentTypes['Rating']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  reviewers?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  score?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  reviewers?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  score?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -192,4 +192,4 @@ export type Resolvers<ContextType = MyContext> = ResolversObject<{
 export type GetBooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetBooksQuery = { __typename?: 'Query', books: Array<{ __typename?: 'Book', id: string, author: string, title: string, rating: { __typename?: 'Rating', score: number } } | null> };
+export type GetBooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', id: string, author?: string | null, title?: string | null, rating?: { __typename?: 'Rating', id: string, score?: number | null } | null }> | null };
